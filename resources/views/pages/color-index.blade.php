@@ -8,19 +8,16 @@
         CREATE NEW EMPLOYEE
     </a> --}}
 
-    <ul>
+    <ul class="row">
 
         @foreach ($colors as $color)
 
-            <li>
+            <li class=" col-12 col-md-6">
                 <a href="{{ route('color-show', $color -> id) }}">
-                    {{ $color -> namecol }}
+                    <div>{{ $color -> namecol }}</div>
+                    <img src="{{asset( $color -> imgcol )}}" alt="">
+
                 </a>
-                {{-- 
-                <a href="{{ route('emp-edit', $emp -> id) }}">
-                    --------------EDIT
-                </a> 
-                --}}
 
 
             </li>
