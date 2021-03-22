@@ -31,17 +31,20 @@ class ProductController extends Controller
 
         $data = $request -> all();
 
-        //dd($data);
 
-        Validator::make($data, [
-
+        $request->validate([
             'namepro' => 'required|min:3|max:100',
-            'imgpro' => 'required|min:3|max:200',
+            'imgpro' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
 
-        ]) -> validate();
+        ]);
+
+        $path = $request->file('imgpro')->store('public/images');
+        $product = new Product;
+        $product->namepro = $request->namepro;
+        $product->imgpro = $path;
 
 
-        
+
         $color = Color::findOrFail($data['color_id']);
         $product = Product::make($request -> all());
         $product -> color() -> associate($color);
