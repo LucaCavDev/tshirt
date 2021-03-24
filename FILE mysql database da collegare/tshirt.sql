@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 22, 2021 at 05:00 PM
+-- Generation Time: Mar 24, 2021 at 09:31 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -97,28 +97,6 @@ CREATE TABLE `products` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `namepro`, `imgpro`, `color_id`, `created_at`, `updated_at`) VALUES
-(1, 'White', 'quibusdam', 2, '2021-03-22 12:28:20', '2021-03-22 12:28:20'),
-(2, 'Crona', 'molestiae', 1, '2021-03-22 12:28:20', '2021-03-22 12:28:20'),
-(3, 'Morissette', 'ipsum', 2, '2021-03-22 12:28:20', '2021-03-22 12:28:20'),
-(4, 'Shields', 'quisquam', 2, '2021-03-22 12:28:20', '2021-03-22 12:28:20'),
-(5, 'Hammes', 'ipsam', 2, '2021-03-22 12:28:21', '2021-03-22 12:28:21'),
-(6, 'provanamepro1', 'provaimgpro1', 1, '2021-03-22 13:12:10', '2021-03-22 13:12:10'),
-(7, 'White', 'asdf', 2, '2021-03-22 13:53:37', '2021-03-22 13:53:37'),
-(8, 'Whiteprova', 'sfsdfsdfs', 2, '2021-03-22 13:53:58', '2021-03-22 13:53:58'),
-(9, 'Whiteprovaciao', 'asasdasd', 2, '2021-03-22 13:54:35', '2021-03-22 13:54:35'),
-(10, 'provacreate', 'provacreate', 2, '2021-03-22 14:02:16', '2021-03-22 14:02:16'),
-(11, 'vxcvxcvsdgsd', 'sdfsdfsd', 2, '2021-03-22 14:03:43', '2021-03-22 14:03:43'),
-(12, 'dfgdgda', 'dog.jpg', 1, '2021-03-22 15:14:19', '2021-03-22 15:14:19'),
-(13, 'fsdfsdf', NULL, 1, '2021-03-22 15:23:43', '2021-03-22 15:23:43'),
-(14, 'fsdfsdf', 'C:\\Users\\lucac\\AppData\\Local\\Temp\\phpFD3D.tmp', 1, '2021-03-22 15:23:50', '2021-03-22 15:23:50'),
-(15, 'sdfsdfsdf', 'cat.jpg', 1, '2021-03-22 15:24:28', '2021-03-22 15:24:28'),
-(16, 'sdfsdfsdf', 'cat.jpg', 1, '2021-03-22 15:27:13', '2021-03-22 15:27:13');
-
 -- --------------------------------------------------------
 
 --
@@ -199,7 +177,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`

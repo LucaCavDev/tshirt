@@ -14,8 +14,8 @@
         </div>
     @endif
 
-    {{--  --}}
-    <form action="{{ route('product-store', $product -> id) }}" method="POST"> 
+    
+    <form action="{{ route('product-update', $product -> id) }}" method="POST" enctype="multipart/form-data"> 
         @csrf
         @method('POST')
 
@@ -24,7 +24,7 @@
         <br>
 
         <label for="imgpro">imgpro</label>
-        <input name="imgpro" type="text">
+        <input name="imgpro" type="file" value="{{ $product -> imgpro }}">
         <br>
 
 

@@ -8,7 +8,6 @@
     CREATE NEW PRODUCT
 </a>
 
-
 <ul>
 
     @foreach ($products as $product)
@@ -21,6 +20,10 @@
             <a href="{{ route('product-edit', $product -> id) }}">
                 -------------EDIT
             </a>
+            <a href="{{ route('product-delete', $product -> id) }}">
+                -------------DELETE
+            </a>
+
 
 
         </li>

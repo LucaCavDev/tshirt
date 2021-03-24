@@ -29,3 +29,8 @@ Route::post('/product/update/{id}', 'ProductController@update')
 
 Route::get('/product/{id}', 'ProductController@show')
     -> name('product-show');
+
+
+Route::get('/product/delete/{id}', 'ProductController@delete')
+    -> name('product-delete');
+   

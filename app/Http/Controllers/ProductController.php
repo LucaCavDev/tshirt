@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+
 use App\Product;
 use App\Color;
 
@@ -29,29 +30,36 @@ class ProductController extends Controller
 
     public function store(Request $request) {
 
-        $data = $request -> all();
-
+        $request -> all();
 
         $request->validate([
-            'namepro' => 'required|min:3|max:100',
-            'imgpro' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            'namepro' => 'required|min:6|max:100',
+            'imgpro' => 'mimes:jpeg,jpg,png,gif|required|max:2048',
 
         ]);
-
-        $path = $request->file('imgpro')->store('public/images');
-        $product = new Product;
-        $product->namepro = $request->namepro;
-        $product->imgpro = $path;
-
-
-
-        $color = Color::findOrFail($data['color_id']);
-        $product = Product::make($request -> all());
-        $product -> color() -> associate($color);
-        $product -> save();
-
         
-        return redirect() -> route('product-show', $product -> id);
+        $newProduct = Product::make($request -> all());
+        $color = Color::findOrFail($request['color_id']);
+
+        if ($request->hasfile('imgpro')) {
+            $img = $request -> file('imgpro');
+
+            $ext = $img -> getClientOriginalExtension();
+            $name = rand(100000, 999999) . '_' . time();
+            $fileName = $name . '.' . $ext;
+    
+            $img -> storeAs('public/uploads/', $fileName);
+            $newProduct -> imgpro = $fileName;
+        } else {
+            return $request;
+            $newProduct->imgpro = '';
+        }
+        $newProduct -> color() -> associate($color);
+
+        $newProduct -> save();
+
+ 
+        return redirect() -> route('product-show', $newProduct -> id);//  route('product-index');
     }
 
 
@@ -67,27 +75,47 @@ class ProductController extends Controller
 
 
     public function update(Request $request, $id) {
-        $data = $request -> all();
+        // $request -> all();
+        $request->validate([
 
-        Validator::make($data, [
+            'namepro' => 'required|min:6|max:100',
+            'imgpro' => 'mimes:jpeg,jpg,png,gif|required|max:2048',
 
-            'namepro' => 'required|min:3|max:100',
-            'imgpro' => 'required|min:3|max:200',
-
-        ]) -> validate();
-
-        $color = Color::findOrFail($data['color_id']);
+        ]);
 
         $product = Product::findOrFail($id);
-        $product -> update($data);
+        $color = Color::findOrFail($request['color_id']);
 
+
+        $product->namepro = $request->input('namepro');
+        
+        if ($request->hasfile('imgpro')) {
+            $img = $request -> file('imgpro');
+
+            $ext = $img -> getClientOriginalExtension();
+            $name = rand(100000, 999999) . '_' . time();
+            $fileName = $name . '.' . $ext;
+    
+            $img -> storeAs('public/uploads/', $fileName);
+            $product -> imgpro = $fileName;
+        } else {
+            return $request;
+            $product->imgpro = '';
+        }
         $product -> color() -> associate($color);
-        $product -> save();
+        $product -> update();
 
 
         return redirect() -> route('product-show', $product -> id);
     }
 
+
+
+    public function delete($id) {
+        $product = Product::findOrFail($id);
+        $product -> delete();
+        return redirect() -> route('product-index');
+    }
 
 
 }

@@ -5,13 +5,22 @@
         PRODUCT: 
         id-> {{ $product -> id }} ---
         name-> {{ $product -> namepro }} <br>
-
-        color of this product-> {{ $product -> color -> namecol}}
-
-        
     </h1>
-    <img src="{{  $product -> imgpro }}" alt="">
 
+    <div>
+        <div>
+            color of this product-> {{ $product -> color -> namecol}}  
+        </div>
+        <img src="{{ asset($product->color->imgcol )}}" alt="">
 
+    </div>
+
+    <div>
+        <div>
+            Image uploaded    
+        </div>
+
+        <img src="{{ asset('/storage/uploads/' .  $product -> imgpro )}}" alt="imgpro5">
+    </div>
 
 @endsection
